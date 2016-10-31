@@ -8,9 +8,9 @@ namespace VehicleConverter.OptionsFramework
 {
     public static class UIHelperBaseExtension
     {
-        public static void AddOptionsGroup<T>(this UIHelperBase helper) where T : IModOptions
+        public static IEnumerable<UIComponent> AddOptionsGroup<T>(this UIHelperBase helper) where T : IModOptions
         {
-
+            var result = new List<UIComponent>();
             var properties = (from property in typeof(T).GetProperties() select property.Name).Where(name => name != "FileName");
             var groups = new Dictionary<string, UIHelperBase>();
             foreach (var propertyName in properties)
@@ -19,7 +19,11 @@ namespace VehicleConverter.OptionsFramework
                 var groupName = OptionsWrapper<T>.Options.GetPropertyGroup(propertyName);
                 if (groupName == null)
                 {
-                    helper.ProcessProperty<T>(propertyName, description);
+                    var component = helper.ProcessProperty<T>(propertyName, description);
+                    if (component != null)
+                    {
+                        result.Add(component);
+                    }
                 }
                 else
                 {
@@ -27,26 +31,32 @@ namespace VehicleConverter.OptionsFramework
                     {
                         groups[groupName] = helper.AddGroup(groupName);
                     }
-                    groups[groupName].ProcessProperty<T>(propertyName, description);
+                    var component = groups[groupName].ProcessProperty<T>(propertyName, description);
+                    if (component != null)
+                    {
+                        result.Add(component);
+                    }
                 }
             }
+            return result;
         }
 
-        private static void ProcessProperty<T>(this UIHelperBase group, string name, string description) where T : IModOptions
+        private static UIComponent ProcessProperty<T>(this UIHelperBase group, string name, string description) where T : IModOptions
         {
             if (OptionsWrapper<T>.Options.IsCheckbox(name))
             {
-                group.AddCheckbox<T>(description, name, OptionsWrapper<T>.Options.GetCheckboxAction(name));
+                return group.AddCheckbox<T>(description, name, OptionsWrapper<T>.Options.GetCheckboxAction(name));
             }
-            else if (OptionsWrapper<T>.Options.IsTextField(name))
+            if (OptionsWrapper<T>.Options.IsTextField(name))
             {
-                group.AddTextField<T>(description, name, OptionsWrapper<T>.Options.GetTextFieldAction(name));
+                return group.AddTextField<T>(description, name, OptionsWrapper<T>.Options.GetTextFieldAction(name));
             }
-            else if (OptionsWrapper<T>.Options.IsDropdown(name))
+            if (OptionsWrapper<T>.Options.IsDropdown(name))
             {
-                group.AddDropdown<T>(description, name, OptionsWrapper<T>.Options.GetDropdownItems(name), OptionsWrapper<T>.Options.GetDropdownAction(name));
+                return group.AddDropdown<T>(description, name, OptionsWrapper<T>.Options.GetDropdownItems(name), OptionsWrapper<T>.Options.GetDropdownAction(name));
             }
             //TODO: more control types
+            return null;
         }
 
         private static UIDropDown AddDropdown<T>(this UIHelperBase group, string text, string propertyName, IList<KeyValuePair<string, int>> items, Action<int> action) where T : IModOptions

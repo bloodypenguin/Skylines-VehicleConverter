@@ -35,6 +35,7 @@
     <Compile Include="Config\TrainItem.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="LoadingExtension.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="OptionsFramework\AbstractOptionsAttribute.cs" />
     <Compile Include="OptionsFramework\CheckboxAttribute.cs" />
     <Compile Include="OptionsFramework\DropDownAttribute.cs" />
@@ -78,7 +79,8 @@
   <PropertyGroup>
     <PostBuildEvent>mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(TargetName)"
 xcopy /y "$(TargetPath)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(TargetName)"
-xcopy /y "$(ProjectDir)\lib" "$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\$(TargetName)" /s /e
+mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\PrefabHook"
+xcopy /y "$(ProjectDir)\lib" "$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\PrefabHook" /s /e
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

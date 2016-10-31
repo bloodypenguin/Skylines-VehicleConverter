@@ -40,22 +40,22 @@ namespace VehicleConverter
                 }
             };
             VehicleInfoHook.Deploy();
-            //return;
-            if (isModActive)
-            {
-                BuildingInfoHook.OnPreInitialization += info =>
-                {
-                    try
-                    {
-                        TrainStationToMetroStation.Convert(info);
-                    }
-                    catch (Exception e)
-                    {
-                        UnityEngine.Debug.LogError(e);
-                    }
-                };
-                BuildingInfoHook.Deploy();
-            }
+//TODO(earalov): restore
+//            if (isModActive)
+//            {
+//                BuildingInfoHook.OnPreInitialization += info =>
+//                {
+//                    try
+//                    {
+//                        TrainStationToMetroStation.Convert(info);
+//                    }
+//                    catch (Exception e)
+//                    {
+//                        UnityEngine.Debug.LogError(e);
+//                    }
+//                };
+//                BuildingInfoHook.Deploy();
+//            }
         }
 
         private static void ReleaseTrains()

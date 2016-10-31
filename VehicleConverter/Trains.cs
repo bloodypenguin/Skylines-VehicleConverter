@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using ColossalFramework;
+using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
+using VehicleConverter.OptionsFramework;
 
 namespace VehicleConverter
 {
@@ -107,15 +109,25 @@ namespace VehicleConverter
         public static IEnumerable<long> GetConvertedIds(Category category = Category.All)
         {
             IEnumerable<long> list = new List<long>();
-            Ids.Where(kvp => IsCategoryEnabled(category) && (kvp.Key & category) != 0).Select(kvp => kvp.Value).ForEach(l => list = list.Concat(l));
+            Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & category) != 0).Select(kvp => kvp.Value).ForEach(l => list = list.Concat(l));
             return list;
         }
 
         private static bool IsCategoryEnabled(Category category)
         {
-            //TODO(earalov): read options
-            return true;
+            switch (category)
+            {
+                case Category.Underground:
+                    return OptionsWrapper<Options>.Options.convertTrainsToMetros && Util.IsModActive("Metro Overhaul");
+                case Category.SBahn:
+                    return OptionsWrapper<Options>.Options.convertSBahnsToMetros && Util.IsModActive("Metro Overhaul");
+                case Category.Tram:
+                    return OptionsWrapper<Options>.Options.convertTrainsToTrams && Util.DLC(SteamHelper.kWinterDLCAppID) ;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(category), category, null);
+            }
         }
+
 
         public static void CustomConversions(VehicleInfo info, long id)
         {
@@ -135,13 +147,10 @@ namespace VehicleConverter
                     {
                         info.m_trailers[info.m_trailers.Length - 1] = new VehicleInfo.VehicleTrailer()
                         {
-                            m_info = info,
-                            m_probability = 100,
-                            m_invertProbability = 100
+                            m_info = info, m_probability = 100, m_invertProbability = 100
                         };
                     }
                 }
-
             }
         }
 

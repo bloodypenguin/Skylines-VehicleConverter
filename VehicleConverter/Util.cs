@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ColossalFramework;
 using ColossalFramework.Plugins;
+using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using ICities;
 using UnityEngine;
@@ -11,6 +13,14 @@ namespace VehicleConverter
 {
     public static class Util
     {
+
+        public static bool DLC(uint id)
+        {
+            if ((int)id == 1)
+                return new SavedBool(Settings.pdxLoginUsed, Settings.userGameState, false).value;
+            return Steam.IsDlcInstalled(id);
+        }
+
 
         public static bool TryGetWorkshoId(PrefabInfo info, out long workshopId)
         {
