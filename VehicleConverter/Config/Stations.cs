@@ -120,12 +120,18 @@ namespace VehicleConverter.Config
 
         private static bool IsCategoryEnabled(StationCategory StationCategory)
         {
+            if (!Util.IsModActive("Metro Overhaul"))
+            {
+                return false;
+            }
             switch (StationCategory)
             {
-                case StationCategory.Modern: //TODO(earalov): add more options
+                case StationCategory.Modern:
+                    return OptionsWrapper<Options>.Options.ConvertModernStationsToMetroStations;
                 case StationCategory.Old:
+                    return OptionsWrapper<Options>.Options.ConvertOldStationsToMetroStations;
                 case StationCategory.Tram:
-                    return OptionsWrapper<Options>.Options.ConvertTrainStationsToMetroStations;
+                    return OptionsWrapper<Options>.Options.ConvertTramStationsToMetroStations;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(StationCategory), StationCategory, null);
             }

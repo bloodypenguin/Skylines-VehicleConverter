@@ -7,8 +7,9 @@ namespace VehicleConverter
 {
     public class Options : IModOptions
     {
-        private const string MOM = "Require Metro Overhaul Mod (MOM)";
-        private const string SNOWFALL = "Require Snowfall DLC";
+        private const string MOM = "Trains - Require Metro Overhaul Mod (MOM)";
+        private const string SNOWFALL = "Trams - Require Snowfall DLC";
+        private const string STATIONS = "Stations - Require Metro Overhaul Mod (MOM)";
 
         public Options()
         {
@@ -16,7 +17,9 @@ namespace VehicleConverter
             ConvertSubwayTrainsToMetros = true;
             ConvertSBahnsToMetros = false;
             ConvertPantographsToMetros = false;
-            ConvertTrainStationsToMetroStations = false;
+            ConvertModernStationsToMetroStations = true;
+            ConvertOldStationsToMetroStations = true;
+            ConvertTramStationsToMetroStations = false;
         }
 
         [XmlElement("convert-subway-trains-to-metros")]
@@ -36,9 +39,15 @@ namespace VehicleConverter
         [Checkbox("Convert tram-trains to Snowfall trams", null, null, SNOWFALL)]
         public bool ConvertTrainsToTrams { set; get; }
 
-        [XmlElement("convert-train-stations-to-metro-stations")]
-        [Checkbox("Convert tram-train stations to metro stations (conflicts with Building Themes if BT cloning enabled!)", null, null, MOM)]
-        public bool ConvertTrainStationsToMetroStations { set; get; }
+        [XmlElement("convert-modern-train-stations-to-metro-stations")]
+        [Checkbox("Convert some Modern Style train stations to metro stations", null, null, STATIONS)]
+        public bool ConvertModernStationsToMetroStations { set; get; }
+        [XmlElement("convert-old-train-stations-to-metro-stations")]
+        [Checkbox("Convert some Old Style train stations to metro stations", null, null, STATIONS)]
+        public bool ConvertOldStationsToMetroStations { set; get; }
+        [XmlElement("convert-tram-train-stations-to-metro-stations")]
+        [Checkbox("Convert some 'tram' train stations to metro stations", null, null, STATIONS)]
+        public bool ConvertTramStationsToMetroStations { set; get; }
 
         [XmlIgnore]
         public string FileName => "TrainConverter-Options.xml";
