@@ -17,18 +17,7 @@ namespace VehicleConverter
 
         public void OnSettingsUI(UIHelperBase helper)
         {
-            var components = helper.AddOptionsGroup<Options>();
-            foreach (var component in components)
-            {
-                var checkBox = component as UICheckBox;
-                if (checkBox != null && checkBox.label.text.Contains("tram"))
-                {
-                    checkBox.eventVisibilityChanged += (c, v) =>
-                    {
-                        c.enabled = Util.DLC(SteamHelper.kWinterDLCAppID);
-                    };
-                }
-            }
+            helper.AddOptionsGroup<Options>();
             try
             {
                 OptionsWrapper<Config.Config>.Ensure();
