@@ -31,10 +31,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Cache.cs" />
-    <Compile Include="Config\Category.cs" />
+    <Compile Include="Config\StationCategory.cs" />
+    <Compile Include="Config\TrainCategory.cs" />
     <Compile Include="Config\Config.cs" />
+    <Compile Include="Config\StationItem.cs" />
     <Compile Include="Config\TrainItem.cs" />
+    <Compile Include="Config\StationItems.cs" />
     <Compile Include="Config\TrainItems.cs" />
+    <Compile Include="Config\Stations.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="LoadingExtension.cs" />
     <Compile Include="Options.cs" />

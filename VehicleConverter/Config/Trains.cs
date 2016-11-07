@@ -8,10 +8,10 @@ namespace VehicleConverter.Config
 {
     public static class Trains
     {
-        private static readonly Dictionary<Category, TrainItem[]> _ids = new Dictionary<Category, TrainItem[]>
+        private static readonly Dictionary<TrainCategory, TrainItem[]> _ids = new Dictionary<TrainCategory, TrainItem[]>
         {
             {
-                Category.Underground, new[]
+                TrainCategory.Underground, new[]
                 {
                     new TrainItem(640837010, "X'Trapolis Metro Melbourne"),
                     new TrainItem(500938881, "Vienna Underground T Stock"),
@@ -56,7 +56,7 @@ namespace VehicleConverter.Config
                 }
             },
             {
-                Category.SBahn, new[]
+                TrainCategory.SBahn, new[]
                 {
                     new TrainItem(659505001, "Berlin S-Bahn Type 481"),
                     new TrainItem(455504253, "S-Bahn Berlin train engine"),
@@ -74,7 +74,7 @@ namespace VehicleConverter.Config
                 }
             },
             {
-                Category.Tram, new[]
+                TrainCategory.Tram, new[]
                 {
                     new TrainItem(563142263, "TTC CLRV"),
                     new TrainItem(567886231, "TTC ALRV"),
@@ -106,53 +106,53 @@ namespace VehicleConverter.Config
 
         private static bool _configIsOverriden;
 
-        public static IEnumerable<TrainItem> GetItems(Category category = Category.All)
+        public static IEnumerable<TrainItem> GetItems(TrainCategory trainCategory = TrainCategory.All)
         {
             var list = new List<TrainItem>();
-            _ids.Where(kvp => (kvp.Key & category) != 0).Select(kvp => kvp.Value).ForEach(a => list.AddRange(a));
+            _ids.Where(kvp => (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(a => list.AddRange(a));
             return list;
         }
 
-        private static Dictionary<Category, TrainItem[]> Ids  {
+        private static Dictionary<TrainCategory, TrainItem[]> Ids  {
             get
             {
                 if (_configIsOverriden)
                 {
                     return _ids;
                 }
-                _ids[Category.Underground] = OptionsWrapper<Config>.Options.Underground.Items.ToArray();
-                _ids[Category.SBahn] = OptionsWrapper<Config>.Options.SBahn.Items.ToArray();
-                _ids[Category.Tram] = OptionsWrapper<Config>.Options.Trams.Items.ToArray();
+                _ids[TrainCategory.Underground] = OptionsWrapper<Config>.Options.Underground.Items.ToArray();
+                _ids[TrainCategory.SBahn] = OptionsWrapper<Config>.Options.SBahn.Items.ToArray();
+                _ids[TrainCategory.Tram] = OptionsWrapper<Config>.Options.Trams.Items.ToArray();
                 _configIsOverriden = true;
                 return _ids;
             }
         }
 
-        public static IEnumerable<long> GetConvertedIds(Category category = Category.All)
+        public static IEnumerable<long> GetConvertedIds(TrainCategory trainCategory = TrainCategory.All)
         {
             var list = new List<long>();
-            Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & category) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
+            Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
             return list;
         }
 
-        private static bool IsCategoryEnabled(Category category)
+        private static bool IsCategoryEnabled(TrainCategory trainCategory)
         {
-            switch (category)
+            switch (trainCategory)
             {
-                case Category.Underground:
+                case TrainCategory.Underground:
                     return OptionsWrapper<Options>.Options.ConvertSubwayTrainsToMetros && Util.IsModActive("Metro Overhaul");
-                case Category.SBahn:
+                case TrainCategory.SBahn:
                     return OptionsWrapper<Options>.Options.ConvertSBahnsToMetros && Util.IsModActive("Metro Overhaul");
-                case Category.Pantograph:
+                case TrainCategory.Pantograph:
                     return OptionsWrapper<Options>.Options.ConvertPantographsToMetros && Util.IsModActive("Metro Overhaul");
-                case Category.Tram:
+                case TrainCategory.Tram:
                     return OptionsWrapper<Options>.Options.ConvertTrainsToTrams && Util.DLC(SteamHelper.kWinterDLCAppID) ;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(category), category, null);
+                    throw new ArgumentOutOfRangeException(nameof(trainCategory), trainCategory, null);
             }
         }
 
-        public static void CustomConversions(VehicleInfo info, long id, Category category)
+        public static void CustomConversions(VehicleInfo info, long id, TrainCategory trainCategory)
         {
             {
                 if (info.m_trailers != null && info.m_trailers.Length > 0) //TODO(earalov): implement take trailers feature
@@ -164,7 +164,7 @@ namespace VehicleConverter.Config
                     }
                 }
 
-                if (!ReplaceLastCar(id, category))
+                if (!ReplaceLastCar(id, trainCategory))
                 {
                     return;
                 }
@@ -178,10 +178,10 @@ namespace VehicleConverter.Config
             }
         }
 
-        private static bool ReplaceLastCar(long id, Category category)
+        private static bool ReplaceLastCar(long id, TrainCategory trainCategory)
         {
             var list = new List<long>();
-            Ids.Where(kvp => (kvp.Key & category) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
+            Ids.Where(kvp => (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
             return list.Contains(id);
         }
 

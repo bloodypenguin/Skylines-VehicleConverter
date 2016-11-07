@@ -9,7 +9,7 @@ namespace VehicleConverter
         public static bool Convert(VehicleInfo info)
         {
             long id;
-            if (!Util.TryGetWorkshoId(info, out id) || !Trains.GetConvertedIds(Category.Trains).Contains(id))
+            if (!Util.TryGetWorkshoId(info, out id) || !Trains.GetConvertedIds(TrainCategory.Trains).Contains(id))
             {
                 return false;
             }
@@ -41,7 +41,7 @@ namespace VehicleConverter
             info.m_maxSpeed = metro.m_maxSpeed;
             info.m_nodMultiplier = metro.m_nodMultiplier;
 
-            Trains.CustomConversions(info, id, Category.Trains);
+            Trains.CustomConversions(info, id, TrainCategory.Trains);
 
             return true;
         }

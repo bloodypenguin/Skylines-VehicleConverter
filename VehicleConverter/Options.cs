@@ -16,13 +16,13 @@ namespace VehicleConverter
         }
 
         [XmlElement("convert-tram-trains-to-trams")]
-        [Checkbox("Convert tram-trains to trams (Req. Snowfall DLC)")]
+        [Checkbox("Convert tram-trains to Snowfall trams (Req. Snowfall DLC)")]
         public bool ConvertTrainsToTrams { set; get; }
         [XmlElement("convert-s-bahn-trains-to-metros")]
-        [Checkbox("Convert S-Bahns to metros (Req. Metro Overhaul mod)")]
+        [Checkbox("Convert S-Bahn trains to metros (Req. Metro Overhaul mod)")]
         public bool ConvertSBahnsToMetros { set; get; }
         [XmlElement("convert-subway-trains-to-metros")]
-        [Checkbox("Convert subway-trains to metros (Req. Metro Overhaul mod)")]
+        [Checkbox("Convert subway trains to metros (Req. Metro Overhaul mod)")]
         public bool ConvertSubwayTrainsToMetros { set; get; }
 
         [XmlElement("convert-pantograph-trains-to-metros")]

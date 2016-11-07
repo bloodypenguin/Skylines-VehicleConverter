@@ -3,7 +3,7 @@
 namespace VehicleConverter.Config
 {
     [Flags]
-    public enum Category
+    public enum TrainCategory
     {
         None = 0,
         Underground = 1,
