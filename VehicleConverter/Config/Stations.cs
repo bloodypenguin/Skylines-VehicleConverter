@@ -50,7 +50,7 @@ namespace VehicleConverter.Config
                     new StationItem(587989905, "[XIRI] Advanced Tram Station"),
                     new StationItem(541850201, "Tram Station"),
                     new StationItem(542504491, "Tram Station 2"),
-                    new StationItem(542877830, "Antwerp Large Station 02"),
+                    new StationItem(542877830, "[TRAM] Antwerp Large Station 02"),
                     new StationItem(542877989, "[TRAM] Antwerp Large Station 01"),
                     new StationItem(571249327, "FancyTrack B"),
                     new StationItem(571248983, "FancyTrack A"),

@@ -61,8 +61,9 @@ namespace VehicleConverter
 
         private static void ReleaseTrains()
         {
+            var convertedIds = Trains.GetConvertedIds();
             var toRelease = new List<ushort>();
-            for (int i = 0; i < TransportManager.instance.m_lines.m_buffer.Length; i++)
+            for (var i = 0; i < TransportManager.instance.m_lines.m_buffer.Length; i++)
             {
                 var line = TransportManager.instance.m_lines.m_buffer[i];
                 if (line.m_flags == TransportLine.Flags.None || line.Info == null)
@@ -76,7 +77,6 @@ namespace VehicleConverter
                 int num1 = 0;
                 if (line.m_vehicles != 0)
                 {
-                    var convertedIds = Trains.GetConvertedIds();
                     VehicleManager instance = VehicleManager.instance;
                     ushort num2 = line.m_vehicles;
                     int num3 = 0;
@@ -118,7 +118,7 @@ namespace VehicleConverter
                     false);
                 return;
             }
-            ReleaseTrains();
+            SimulationManager.instance.AddAction(ReleaseTrains);
         }
 
         public override void OnReleased()
