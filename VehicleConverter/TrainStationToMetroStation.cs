@@ -13,9 +13,8 @@ namespace VehicleConverter
 
         public static bool Convert(BuildingInfo info)
         {
-            UnityEngine.Debug.Log("Processing " + info.name);
             long id;
-            if (!Util.TryGetWorkshoId(info, out id) || !Stations.GetConvertedIds(StationCategory.All).Contains(id))
+            if (!Util.TryGetWorkshopId(info, out id) || !Stations.GetConvertedIds(StationCategory.All).Contains(id))
             {
                 return false;
             }
@@ -26,13 +25,12 @@ namespace VehicleConverter
             {
                 return false;
             }
-            var isAlreadyAMetroStation = false;
             var stationAi = ai as TransportStationAI;
             if (stationAi != null)
             {
                 if (stationAi.m_transportInfo == PrefabCollection<TransportInfo>.FindLoaded("Metro"))
                 {
-                    isAlreadyAMetroStation = true;
+                    return true; //already a metro station
                 }
                 info.m_class = (ItemClass)ScriptableObject.CreateInstance(nameof(ItemClass));
                 info.m_class.name = info.name;
@@ -51,12 +49,15 @@ namespace VehicleConverter
                 newAi.m_allowOverlap = true;
                 info.m_placementMode = BuildingInfo.PlacementMode.OnGround;
             }
-
-            ai.m_createPassMilestone = metroEntrance.GetComponent<PlayerBuildingAI>().m_createPassMilestone;
-            info.m_UnlockMilestone = metroEntrance.m_UnlockMilestone;
+            else
+            {
+                ai.m_createPassMilestone = metroEntrance.GetComponent<PlayerBuildingAI>().m_createPassMilestone;
+            }
             _uiCategoryfield.SetValue(info, metroEntrance.category);
+            info.m_UnlockMilestone = metroEntrance.m_UnlockMilestone;
 
-            if (info.m_paths == null || isAlreadyAMetroStation)
+
+            if (info.m_paths == null)
             {
                 return true;
             }

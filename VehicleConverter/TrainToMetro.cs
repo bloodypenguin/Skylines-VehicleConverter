@@ -9,7 +9,7 @@ namespace VehicleConverter
         public static bool Convert(VehicleInfo info)
         {
             long id;
-            if (!Util.TryGetWorkshoId(info, out id) || !Trains.GetConvertedIds(TrainCategory.Trains).Contains(id))
+            if (!Util.TryGetWorkshopId(info, out id) || !Trains.GetConvertedIds(TrainCategory.Trains).Contains(id))
             {
                 return false;
             }

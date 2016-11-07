@@ -22,7 +22,7 @@ namespace VehicleConverter
         }
 
 
-        public static bool TryGetWorkshoId(PrefabInfo info, out long workshopId)
+        public static bool TryGetWorkshopId(PrefabInfo info, out long workshopId)
         {
             workshopId = -1;
             if (info?.name == null)

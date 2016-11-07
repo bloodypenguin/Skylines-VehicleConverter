@@ -32,7 +32,10 @@ namespace VehicleConverter
                         {
                             TrainToMetro.Convert(info);
                         }
-                        TrainToTram.Convert(info);
+                        if (Util.DLC(SteamHelper.kWinterDLCAppID))
+                        {
+                            TrainToTram.Convert(info);
+                        }
                     }
                 }
                 catch (Exception e)
@@ -78,7 +81,7 @@ namespace VehicleConverter
                     {
                         var vehicle = instance.m_vehicles.m_buffer[(int)num2];
                         long id;
-                        if (Util.TryGetWorkshoId(vehicle.Info, out id))
+                        if (Util.TryGetWorkshopId(vehicle.Info, out id))
                         {
                             if (line.Info.m_vehicleType != vehicle.Info.m_vehicleType)
                             {
