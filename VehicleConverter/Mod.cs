@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using ColossalFramework.UI;
 using ICities;
 using UnityEngine;
+using VehicleConverter.Config;
 using VehicleConverter.OptionsFramework;
 
 namespace VehicleConverter
@@ -36,7 +38,16 @@ namespace VehicleConverter
                 var display = new GameObject().AddComponent<ErrorMessageDisplay>();
                 display.e = e;
             }
-
+#if DEBUG
+            UnityEngine.Debug.Log("Trains:");
+            var trains = Trains.GetConvertedIds();
+            Array.Sort(trains);
+            UnityEngine.Debug.Log(trains.Aggregate("", (current, convertedId) => current + $"http://steamcommunity.com/sharedfiles/filedetails/?id={convertedId}\n"));
+            UnityEngine.Debug.Log("Stations:");
+            var stations = Stations.GetConvertedIds();
+            Array.Sort(stations);
+            UnityEngine.Debug.Log(stations.Aggregate("", (current, convertedId) => current + $"http://steamcommunity.com/sharedfiles/filedetails/?id={convertedId}\n"));
+#endif
         }
 
 

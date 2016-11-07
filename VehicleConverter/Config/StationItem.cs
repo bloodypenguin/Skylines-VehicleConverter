@@ -21,6 +21,7 @@ namespace VehicleConverter.Config
             Exclude = false;
             Description = description;
             WorkshopId = workshoId;
+            ToDecoration = toDecoration;
         }
 
         [XmlAttribute("workshop-id")]

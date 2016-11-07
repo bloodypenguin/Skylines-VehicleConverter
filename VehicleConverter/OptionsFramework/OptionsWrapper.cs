@@ -29,11 +29,12 @@ namespace VehicleConverter.OptionsFramework
 
         public static void Ensure()
         {
-            _instance = (T)Activator.CreateInstance(typeof(T));
-            if (_instance == null)
+            if (_instance != null)
             {
-                LoadOptions();
+                return;
             }
+            _instance = (T)Activator.CreateInstance(typeof(T));
+            LoadOptions();
         }
 
         private static void LoadOptions()
