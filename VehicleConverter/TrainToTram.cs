@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using VehicleConverter.Config;
 using Object = UnityEngine.Object;
 
 namespace VehicleConverter
@@ -11,7 +12,7 @@ namespace VehicleConverter
         public static bool Convert(VehicleInfo info)
         {
             long id;
-            if (!Util.TryGetWorkshoId(info, out id) || !Trains.GetConvertedIds(Trains.Category.Tram).Contains(id))
+            if (!Util.TryGetWorkshoId(info, out id) || !Trains.GetConvertedIds(Category.Tram).Contains(id))
             {
                 return false;
             }
@@ -48,7 +49,7 @@ namespace VehicleConverter
             var effect = tram.m_effects.Where(e => e.m_effect.name == "Tram Movement").First();
             info.m_effects = info.m_effects.Where(e => e.m_effect.name == "Train Movement").Select(e => effect).ToArray();
 
-            Trains.CustomConversions(info, id);
+            Trains.CustomConversions(info, id, Category.Tram);
 
             return true;
         }

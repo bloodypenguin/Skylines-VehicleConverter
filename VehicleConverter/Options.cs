@@ -1,4 +1,6 @@
-﻿using System.Xml.Serialization;
+﻿using System.Linq;
+using System.Xml.Serialization;
+using VehicleConverter.Config;
 using VehicleConverter.OptionsFramework;
 
 namespace VehicleConverter
@@ -7,22 +9,31 @@ namespace VehicleConverter
     {
         public Options()
         {
-            convertTrainsToTrams = true;
-            convertTrainsToMetros = true;
-            convertSBahnsToMetros = true;
-//            convertTrainStationsToMetroStations = false;
+            ConvertTrainsToTrams = true;
+            ConvertSubwayTrainsToMetros = true;
+            ConvertSBahnsToMetros = true;
+            ConvertTrainStationsToMetroStations = false;
         }
 
+        [XmlElement("convert-tram-trains-to-trams")]
         [Checkbox("Convert tram-trains to trams (Req. Snowfall DLC)")]
-        public bool convertTrainsToTrams { set; get; }
+        public bool ConvertTrainsToTrams { set; get; }
+        [XmlElement("convert-s-bahn-trains-to-metros")]
         [Checkbox("Convert S-Bahns to metros (Req. Metro Overhaul mod)")]
-        public bool convertSBahnsToMetros { set; get; }
-        [Checkbox("Convert metro-trains to metros (Req. Metro Overhaul mod)")]
-        public bool convertTrainsToMetros { set; get; }
-//        [Checkbox("Convert metro-train stations to metro stations (Not implemented yet)")]
-//        public bool convertTrainStationsToMetroStations { set; get; }
+        public bool ConvertSBahnsToMetros { set; get; }
+        [XmlElement("convert-subway-trains-to-metros")]
+        [Checkbox("Convert subway-trains to metros (Req. Metro Overhaul mod)")]
+        public bool ConvertSubwayTrainsToMetros { set; get; }
+
+        [XmlElement("convert-pantograph-trains-to-metros")]
+        [Checkbox("Convert pantograph trains to metros (Req. Metro Overhaul mod)")]
+        public bool ConvertPantographsToMetros { set; get; }
+
+        [XmlElement("convert-train-stations-to-metro-stations")]
+        [Checkbox("Convert some train stations to metro stations (Req. Metro Overhaul mod, conflicts with Building Themes cloning feature)")]
+        public bool ConvertTrainStationsToMetroStations { set; get; }
 
         [XmlIgnore]
-        public string FileName => "CSL-VehicleConverter.xml";
+        public string FileName => "CSL-TrainConverter-Options.xml";
     }
 }

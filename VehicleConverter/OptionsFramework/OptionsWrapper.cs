@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
+using ColossalFramework.IO;
 using UnityEngine;
 
 namespace VehicleConverter.OptionsFramework
@@ -13,11 +14,16 @@ namespace VehicleConverter.OptionsFramework
         {
             get
             {
-                if (_instance == null)
-                {
-                    LoadOptions();
-                }
+                Ensure();
                 return _instance;
+            }
+        }
+
+        public static void Ensure()
+        {
+            if (_instance == null)
+            {
+                LoadOptions();
             }
         }
 
@@ -29,7 +35,7 @@ namespace VehicleConverter.OptionsFramework
                 try
                 {
                     var xmlSerializer = new XmlSerializer(typeof(T));
-                    var fileName = _instance.FileName;
+                    var fileName = Path.Combine(DataLocation.localApplicationData, _instance.FileName);
                     if (!fileName.EndsWith(".xml"))
                     {
                         fileName = fileName + ".xml";
@@ -64,7 +70,7 @@ namespace VehicleConverter.OptionsFramework
             try
             {
                 var xmlSerializer = new XmlSerializer(typeof(T));
-                var fileName = _instance.FileName;
+                var fileName = Path.Combine(DataLocation.localApplicationData, _instance.FileName);
                 if (!fileName.EndsWith(".xml"))
                 {
                     fileName = fileName + ".xml";

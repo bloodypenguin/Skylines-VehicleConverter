@@ -10,9 +10,7 @@ namespace VehicleConverter.OptionsFramework
             var fi = value.GetType().GetProperty(propertyName);
             var attributes =
                 (AbstractOptionsAttribute[]) fi.GetCustomAttributes(typeof(AbstractOptionsAttribute), false);
-            if (attributes.Length > 0)
-                return attributes[0].Description;
-            throw new Exception($"No description specified for property {propertyName}!");
+            return attributes.Length > 0 ? attributes[0].Description : null;
         }
 
         public static string GetPropertyGroup<T>(this T value, string propertyName) where T : IModOptions

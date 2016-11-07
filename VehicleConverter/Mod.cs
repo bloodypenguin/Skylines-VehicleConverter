@@ -25,6 +25,7 @@ namespace VehicleConverter
                     };
                 }
             }
+            OptionsWrapper<Config.Config>.Ensure();
         }
     }
 }

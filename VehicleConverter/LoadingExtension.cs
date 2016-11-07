@@ -7,6 +7,7 @@ using ColossalFramework.UI;
 using ICities;
 using PrefabHook;
 using UnityEngine;
+using VehicleConverter.Config;
 
 namespace VehicleConverter
 {
@@ -40,22 +41,22 @@ namespace VehicleConverter
                 }
             };
             VehicleInfoHook.Deploy();
-//TODO(earalov): restore
-//            if (isModActive)
-//            {
-//                BuildingInfoHook.OnPreInitialization += info =>
-//                {
-//                    try
-//                    {
-//                        TrainStationToMetroStation.Convert(info);
-//                    }
-//                    catch (Exception e)
-//                    {
-//                        UnityEngine.Debug.LogError(e);
-//                    }
-//                };
-//                BuildingInfoHook.Deploy();
-//            }
+
+            if (isModActive)
+            {
+                BuildingInfoHook.OnPreInitialization += info =>
+                {
+                    try
+                    {
+                        TrainStationToMetroStation.Convert(info);
+                    }
+                    catch (Exception e)
+                    {
+                        UnityEngine.Debug.LogError(e);
+                    }
+                };
+                BuildingInfoHook.Deploy();
+            }
         }
 
         private static void ReleaseTrains()
