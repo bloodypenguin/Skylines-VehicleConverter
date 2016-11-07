@@ -53,6 +53,15 @@ namespace VehicleConverter.Config
                     new TrainItem(459046989, "Hong Kong MTR M Stock Passenger Trainset"),
                     new TrainItem(719354151, "C14 - Stockholm metro train - with stripe"),
                     new TrainItem(719354802, "C14 - Stockholm metro train - without stripe"),
+                    new TrainItem(783040852, "Taipei Metro Kwasaki C371 3Cars_Metro Version"),
+                    new TrainItem(757806599, "Taipei Metro Kawasaki C371 5Cars _Train"),
+                    new TrainItem(770004076, "Hamburg Metro | DT5 HOCHBAHN long fictitious (no mid engine)"),
+                    new TrainItem(769873579, "Hamburg Metro | DT5 HOCHBAHN triple Unit"),
+                    new TrainItem(768353544, "Hamburg Metro | DT5 HOCHBAHN double unit"),
+                    new TrainItem(768353273, "Hamburg Metro | DT5 HOCHBAHN single unit"),
+                    new TrainItem(766722658, "Moscow Metro Train #1"),
+                    new TrainItem(730504141, "C14 - Stockholm metro train - with colorable stripe"),
+                    new TrainItem(722264461, "S1 Metro"),
                 }
             },
             {
@@ -60,6 +69,7 @@ namespace VehicleConverter.Config
                 {
                     new TrainItem(659505001, "Berlin S-Bahn Type 481"),
                     new TrainItem(455504253, "S-Bahn Berlin train engine"),
+                    new TrainItem(775928677, "Hamburg Metro | ET490 S-Bahn Hamburg"),
                     //Thaok S-Bahns
                     new TrainItem(537268020, "Hamburg S-Bahn Class ET 171 (471) 3 car", true),
                     new TrainItem(537268458, "Hamburg S-Bahn Class ET 171 (471) 6 car", true),
@@ -71,6 +81,9 @@ namespace VehicleConverter.Config
                     new TrainItem(566937816, "Berlin S-Bahn ET/EB 165 (4 car)"),
                     new TrainItem(566937997, "Berlin S-Bahn ET/EB 165 (6 car)"),
                     new TrainItem(566938132, "Berlin S-Bahn ET/EB 165 (8 car)"),
+                    new TrainItem(785264960, "Hamburg S-Bahn Class 474/874 (6 car)"),
+                    new TrainItem(785264521, "Hamburg S-Bahn Class 474/874 (3 car)"),
+
                 }
             },
             {
@@ -97,11 +110,13 @@ namespace VehicleConverter.Config
                     new TrainItem(613511373, "San Francisco Single-Ended Cable Car (Train)"),
                     new TrainItem(644470261, "Combino Supra Light Rail", true),
                     new TrainItem(560073353, "Chirpy LRT"),
+                    new TrainItem(771217275, "[Train] Kaohsiung Light Rail Urbos 3"),
                 }
             },
             //Korails?
             //JR?
             //ron_fu-ta?
+            //JSF-1
         };
 
         private static bool _configIsOverriden;
