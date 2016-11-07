@@ -39,6 +39,6 @@ namespace VehicleConverter.Config
         public StationItems ModernStations { get; private set; }
 
         [XmlIgnore]
-        public string FileName => "CSL-TrainConverter-Config.xml";
+        public string FileName => "TrainConverter-Config.xml";
     }
 }

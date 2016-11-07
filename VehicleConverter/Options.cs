@@ -34,6 +34,6 @@ namespace VehicleConverter
         public bool ConvertTrainStationsToMetroStations { set; get; }
 
         [XmlIgnore]
-        public string FileName => "CSL-TrainConverter-Options.xml";
+        public string FileName => "TrainConverter-Options.xml";
     }
 }
