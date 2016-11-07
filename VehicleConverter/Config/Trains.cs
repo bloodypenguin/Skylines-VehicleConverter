@@ -131,7 +131,13 @@ namespace VehicleConverter.Config
         public static IEnumerable<long> GetConvertedIds(TrainCategory trainCategory = TrainCategory.All)
         {
             var list = new List<long>();
-            Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
+            Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t =>
+            {
+                if (!t.Exclude)
+                {
+                    list.Add(t.WorkshopId);
+                }
+            }));
             return list;
         }
 
@@ -155,7 +161,13 @@ namespace VehicleConverter.Config
         public static bool ReplaceLastCar(long id, TrainCategory trainCategory)
         {
             var list = new List<long>();
-            Ids.Where(kvp => (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
+            Ids.Where(kvp => (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t =>
+            {
+                if (t.ReplaceLastTrailerWithEngine)
+                {
+                    list.Add(t.WorkshopId);
+                }
+            }));
             return list.Contains(id);
         }
 

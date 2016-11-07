@@ -90,7 +90,13 @@ namespace VehicleConverter.Config
         public static IEnumerable<long> GetConvertedIds(StationCategory StationCategory = StationCategory.All)
         {
             var list = new List<long>();
-            Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & StationCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
+            Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & StationCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t =>
+            {
+                if (!t.Exclude)
+                {
+                    list.Add(t.WorkshopId);
+                }
+            }));
             return list;
         }
 
@@ -110,7 +116,13 @@ namespace VehicleConverter.Config
         public static bool ToDecoration(long id)
         {
             var list = new List<long>();
-            Ids.Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
+            Ids.Select(kvp => kvp.Value).ForEach(l => l.ForEach(t =>
+            {
+                if (t.ToDecoration)
+                {
+                    list.Add(t.WorkshopId);
+                }
+            }));
             return list.Contains(id);
         }
 
