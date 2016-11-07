@@ -30,6 +30,20 @@ namespace VehicleConverter.Config
                     new StationItem(665292636, "Skytrain station"),
                     new StationItem(538157066, "Sunken Train Station (Concrete)"),
                     new StationItem(536893383, "Sunken Train Station (Brick)"),
+                    new StationItem(670379488, "Single Concrete Station with central platform"),
+                    new StationItem(670381051, "Double Concrete Station with central platforms"),
+                    new StationItem(679440978, "Quad's Carapace"),
+                    new StationItem(495225348, "Train station one"),
+                    new StationItem(512366720, "Train station one double,"),
+                    new StationItem(683142113, "Train station one single entry"),
+                    new StationItem(698183615, "Big Train Station"),
+                    new StationItem(727755831, "Joak's Train Station (2 tracks)"),
+                    new StationItem(791997548, "Grand Central"),
+                    new StationItem(791996640, "Grand Central - Station Module 1"),
+                    new StationItem(782666773, "zhong shan park station"),
+                    new StationItem(756870924, "Taichung MRT Station"),
+                    new StationItem(618580477, "City Station"),
+                    new StationItem(563062277, "Glass Terminus Station"),
                 }
             },
             {
@@ -40,8 +54,7 @@ namespace VehicleConverter.Config
                     new StationItem(519519752, "Elevated Train Stop (Read Description pls)"),
                     new StationItem(665774022, "Single Brick Station with central platform"),
                     new StationItem(665788204, "Double Brick Station with central platforms"),
-                    new StationItem(670379488, "Single Concrete Station with central platform"),
-                    new StationItem(670381051, "Double Concrete Station with central platforms"),
+                    new StationItem(753080711, "Taipei MRT Station"),
                 }
             },
             {
@@ -59,6 +72,11 @@ namespace VehicleConverter.Config
                     new StationItem(542877338, "[TRAM] Antwerp Large track 03"),
                     new StationItem(542877508, "[TRAM] Antwerp Large track 02"),
                     new StationItem(544693280, "[XIRI] LTN Station [In-Avenue Station]"),
+                    new StationItem(702425484, "Joak's Tram (Train) Station"),
+                    new StationItem(762691618, "Old Town Elevated Platform"),
+                    new StationItem(766344682, "Basic Elevated Rail Platform"),
+                    new StationItem(781768600, "[Train] KLRT Standard Station"),
+
                 }
             },
         };
