@@ -59,9 +59,8 @@ namespace VehicleConverter
             }
         }
 
-        private static void ReleaseTrains()
+        private static void ReleaseWrongVehiclesFromLines()
         {
-            var convertedIds = Trains.GetConvertedIds();
             var toRelease = new List<ushort>();
             for (var i = 0; i < TransportManager.instance.m_lines.m_buffer.Length; i++)
             {
@@ -70,11 +69,6 @@ namespace VehicleConverter
                 {
                     continue;
                 }
-                if (line.Info.m_vehicleType != VehicleInfo.VehicleType.Train)
-                {
-                    continue;
-                }
-                int num1 = 0;
                 if (line.m_vehicles != 0)
                 {
                     VehicleManager instance = VehicleManager.instance;
@@ -84,13 +78,15 @@ namespace VehicleConverter
                     {
                         var vehicle = instance.m_vehicles.m_buffer[(int)num2];
                         long id;
-                        if (Util.TryGetWorkshoId(vehicle.Info, out id) && convertedIds.Contains(id))
+                        if (Util.TryGetWorkshoId(vehicle.Info, out id))
                         {
-                            line.RemoveVehicle(num2, ref instance.m_vehicles.m_buffer[(int)num2]);
-                            toRelease.Add(num2);
+                            if (line.Info.m_vehicleType != vehicle.Info.m_vehicleType)
+                            {
+                                line.RemoveVehicle(num2, ref instance.m_vehicles.m_buffer[(int)num2]);
+                                toRelease.Add(num2);
+                            }
                         }
                         ushort num4 = vehicle.m_nextLineVehicle;
-                        ++num1;
                         num2 = num4;
                         if (++num3 > VehicleManager.MAX_VEHICLE_COUNT)
                         {
@@ -118,7 +114,7 @@ namespace VehicleConverter
                     false);
                 return;
             }
-            SimulationManager.instance.AddAction(ReleaseTrains);
+            SimulationManager.instance.AddAction(ReleaseWrongVehiclesFromLines);
         }
 
         public override void OnReleased()

@@ -105,7 +105,7 @@ namespace VehicleConverter.Config
             }
         }
 
-        public static IEnumerable<long> GetConvertedIds(StationCategory StationCategory = StationCategory.All)
+        public static long[] GetConvertedIds(StationCategory StationCategory = StationCategory.All)
         {
             var list = new List<long>();
             Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & StationCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t =>
@@ -115,7 +115,7 @@ namespace VehicleConverter.Config
                     list.Add(t.WorkshopId);
                 }
             }));
-            return list;
+            return list.ToArray();
         }
 
         private static bool IsCategoryEnabled(StationCategory StationCategory)

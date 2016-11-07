@@ -159,7 +159,7 @@ namespace VehicleConverter.Config
             }
         }
 
-        public static IEnumerable<long> GetConvertedIds(TrainCategory trainCategory = TrainCategory.All)
+        public static long[] GetConvertedIds(TrainCategory trainCategory = TrainCategory.All)
         {
             var list = new List<long>();
             Ids.Where(kvp => IsCategoryEnabled(kvp.Key) && (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t =>
@@ -169,7 +169,7 @@ namespace VehicleConverter.Config
                     list.Add(t.WorkshopId);
                 }
             }));
-            return list;
+            return list.ToArray();
         }
 
         private static bool IsCategoryEnabled(TrainCategory trainCategory)
