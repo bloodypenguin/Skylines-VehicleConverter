@@ -8,6 +8,7 @@ using ICities;
 using PrefabHook;
 using UnityEngine;
 using VehicleConverter.Config;
+using VehicleConverter.OptionsFramework;
 
 namespace VehicleConverter
 {
@@ -22,30 +23,39 @@ namespace VehicleConverter
                 return;
             }
             var isModActive = Util.IsModActive("Metro Overhaul");
-            VehicleInfoHook.OnPreInitialization += info =>
+            if ((isModActive || Util.DLC(SteamHelper.kWinterDLCAppID)) &&
+                (OptionsWrapper<Options>.Options.ConvertPantographsToMetros ||
+                 OptionsWrapper<Options>.Options.ConvertSBahnsToMetros ||
+                 OptionsWrapper<Options>.Options.ConvertSubwayTrainsToMetros ||
+                 OptionsWrapper<Options>.Options.ConvertTrainsToTrams))
             {
-                try
+
+                VehicleInfoHook.OnPreInitialization += info =>
                 {
-                    if (info.m_class.m_subService == ItemClass.SubService.PublicTransportTrain)
+                    try
                     {
-                        if (isModActive)
+                        if (info.m_class.m_subService == ItemClass.SubService.PublicTransportTrain)
                         {
-                            TrainToMetro.Convert(info);
-                        }
-                        if (Util.DLC(SteamHelper.kWinterDLCAppID))
-                        {
-                            TrainToTram.Convert(info);
+                            if (isModActive)
+                            {
+                                TrainToMetro.Convert(info);
+                            }
+                            if (Util.DLC(SteamHelper.kWinterDLCAppID))
+                            {
+                                TrainToTram.Convert(info);
+                            }
                         }
                     }
-                }
-                catch (Exception e)
-                {
-                    UnityEngine.Debug.LogError(e);
-                }
-            };
-            VehicleInfoHook.Deploy();
-
-            if (isModActive)
+                    catch (Exception e)
+                    {
+                        UnityEngine.Debug.LogError(e);
+                    }
+                };
+                VehicleInfoHook.Deploy();
+            }
+            if (isModActive && 
+                (OptionsWrapper<Options>.Options.ConvertModernStationsToMetroStations || OptionsWrapper<Options>.Options.ConvertOldStationsToMetroStations ||
+                OptionsWrapper<Options>.Options.ConvertTramStationsToMetroStations))
             {
                 BuildingInfoHook.OnPreInitialization += info =>
                 {
