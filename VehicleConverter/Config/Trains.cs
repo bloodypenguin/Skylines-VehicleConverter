@@ -132,10 +132,6 @@ namespace VehicleConverter.Config
                     new TrainItem(614153454, "ELVIS korail resistance type metro"),
                 }
             },
-            //Korails?
-            //JR?
-            //ron_fu-ta?
-            //JSF-1
         };
 
         private static bool _configIsOverriden;

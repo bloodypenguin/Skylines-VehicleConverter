@@ -14,13 +14,22 @@ namespace VehicleConverter.OptionsFramework
         {
             get
             {
-                Ensure();
+                try
+                {
+                    Ensure();
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.LogError("Error reading options XML file");
+                    UnityEngine.Debug.LogException(e);
+                }
                 return _instance;
             }
         }
 
         public static void Ensure()
         {
+            _instance = (T)Activator.CreateInstance(typeof(T));
             if (_instance == null)
             {
                 LoadOptions();
@@ -31,37 +40,29 @@ namespace VehicleConverter.OptionsFramework
         {
             try
             {
-                _instance = (T)Activator.CreateInstance(typeof(T));
-                try
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                var fileName = Path.Combine(DataLocation.localApplicationData, _instance.FileName);
+                if (!fileName.EndsWith(".xml"))
                 {
-                    var xmlSerializer = new XmlSerializer(typeof(T));
-                    var fileName = Path.Combine(DataLocation.localApplicationData, _instance.FileName);
-                    if (!fileName.EndsWith(".xml"))
-                    {
-                        fileName = fileName + ".xml";
-                    }
-                    using (var streamReader = new StreamReader(fileName))
-                    {
-                        var options = (T)xmlSerializer.Deserialize(streamReader);
-                        foreach (var propertyInfo in typeof(T).GetProperties())
-                        {
-                            if (!propertyInfo.CanWrite)
-                            {
-                                continue;
-                            }
-                            var value = propertyInfo.GetValue(options, null);
-                            propertyInfo.SetValue(_instance, value, null);
-                        }
-                    }
+                    fileName = fileName + ".xml";
                 }
-                catch (FileNotFoundException)
+                using (var streamReader = new StreamReader(fileName))
                 {
-                    SaveOptions();// No options file yet
+                    var options = (T)xmlSerializer.Deserialize(streamReader);
+                    foreach (var propertyInfo in typeof(T).GetProperties())
+                    {
+                        if (!propertyInfo.CanWrite)
+                        {
+                            continue;
+                        }
+                        var value = propertyInfo.GetValue(options, null);
+                        propertyInfo.SetValue(_instance, value, null);
+                    }
                 }
             }
-            catch (Exception e)
+            catch (FileNotFoundException)
             {
-                Debug.LogException(e);
+                SaveOptions();// No options file yet
             }
         }
 
