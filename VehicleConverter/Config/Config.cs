@@ -11,14 +11,14 @@ namespace VehicleConverter.Config
     {
         public Config()
         {
-            Underground = new TrainItems(Trains.GetItems(TrainCategory.Underground).ToList());
-            SBahn = new TrainItems(Trains.GetItems(TrainCategory.SBahn).ToList());
-            Trams = new TrainItems(Trains.GetItems(TrainCategory.Tram).ToList());
-            Pantograph = new TrainItems(Trains.GetItems(TrainCategory.Pantograph).ToList());
+            Underground = new TrainItems(Trains.GetItems(TrainCategory.Underground).OrderBy(i => i.WorkshopId).ToList());
+            SBahn = new TrainItems(Trains.GetItems(TrainCategory.SBahn).OrderBy(i => i.WorkshopId).ToList());
+            Trams = new TrainItems(Trains.GetItems(TrainCategory.Tram).OrderBy(i => i.WorkshopId).ToList());
+            Pantograph = new TrainItems(Trains.GetItems(TrainCategory.Pantograph).OrderBy(i => i.WorkshopId).ToList());
 
-            TramStations = new StationItems(Stations.GetItems(StationCategory.Tram).ToList());
-            OldStations = new StationItems(Stations.GetItems(StationCategory.Old).ToList());
-            ModernStations = new StationItems(Stations.GetItems(StationCategory.Modern).ToList());
+            TramStations = new StationItems(Stations.GetItems(StationCategory.Tram).OrderBy(i => i.WorkshopId).ToList());
+            OldStations = new StationItems(Stations.GetItems(StationCategory.Old).OrderBy(i => i.WorkshopId).ToList());
+            ModernStations = new StationItems(Stations.GetItems(StationCategory.Modern).OrderBy(i => i.WorkshopId).ToList());
         }
 
         [XmlElement("version")]
