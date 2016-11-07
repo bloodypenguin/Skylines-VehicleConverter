@@ -41,7 +41,7 @@ namespace VehicleConverter
             info.m_maxSpeed = metro.m_maxSpeed;
             info.m_nodMultiplier = metro.m_nodMultiplier;
 
-            Trains.CustomConversions(info, id, TrainCategory.Trains);
+            TrainConversions.CustomConversions(info, id, TrainCategory.Trains);
 
             return true;
         }

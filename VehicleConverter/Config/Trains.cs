@@ -152,33 +152,7 @@ namespace VehicleConverter.Config
             }
         }
 
-        public static void CustomConversions(VehicleInfo info, long id, TrainCategory trainCategory)
-        {
-            {
-                if (info.m_trailers != null && info.m_trailers.Length > 0) //TODO(earalov): implement take trailers feature
-                {
-                    switch (id)
-                    {
-                        default:
-                            break;
-                    }
-                }
-
-                if (!ReplaceLastCar(id, trainCategory))
-                {
-                    return;
-                }
-                if (info.m_trailers != null && info.m_trailers.Length > 0)
-                {
-                    info.m_trailers[info.m_trailers.Length - 1] = new VehicleInfo.VehicleTrailer()
-                    {
-                        m_info = info, m_probability = 100, m_invertProbability = 100
-                    };
-                }
-            }
-        }
-
-        private static bool ReplaceLastCar(long id, TrainCategory trainCategory)
+        public static bool ReplaceLastCar(long id, TrainCategory trainCategory)
         {
             var list = new List<long>();
             Ids.Where(kvp => (kvp.Key & trainCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));

@@ -49,7 +49,7 @@ namespace VehicleConverter
             var effect = tram.m_effects.Where(e => e.m_effect.name == "Tram Movement").First();
             info.m_effects = info.m_effects.Where(e => e.m_effect.name == "Train Movement").Select(e => effect).ToArray();
 
-            Trains.CustomConversions(info, id, TrainCategory.Tram);
+            TrainConversions.CustomConversions(info, id, TrainCategory.Tram);
 
             return true;
         }

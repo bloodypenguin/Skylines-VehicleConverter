@@ -98,46 +98,21 @@ namespace VehicleConverter.Config
         {
             switch (StationCategory)
             {
-                case StationCategory.All: //TODO(earalov): add more options
+                case StationCategory.Modern: //TODO(earalov): add more options
+                case StationCategory.Old:
+                case StationCategory.Tram:
                     return OptionsWrapper<Options>.Options.ConvertTrainStationsToMetroStations;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(StationCategory), StationCategory, null);
             }
         }
 
-        public static void CustomConversions(VehicleInfo info, long id, StationCategory StationCategory)
-        {
-            {
-                if (info.m_trailers != null && info.m_trailers.Length > 0) //TODO(earalov): implement take trailers feature
-                {
-                    switch (id)
-                    {
-                        default:
-                            break;
-                    }
-                }
-
-                if (!ReplaceLastCar(id, StationCategory))
-                {
-                    return;
-                }
-                if (info.m_trailers != null && info.m_trailers.Length > 0)
-                {
-                    info.m_trailers[info.m_trailers.Length - 1] = new VehicleInfo.VehicleTrailer()
-                    {
-                        m_info = info, m_probability = 100, m_invertProbability = 100
-                    };
-                }
-            }
-        }
-
-        private static bool ReplaceLastCar(long id, StationCategory StationCategory)
+        public static bool ToDecoration(long id)
         {
             var list = new List<long>();
-            Ids.Where(kvp => (kvp.Key & StationCategory) != 0).Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
+            Ids.Select(kvp => kvp.Value).ForEach(l => l.ForEach(t => list.Add(t.WorkshopId)));
             return list.Contains(id);
         }
-
 
     }
 }

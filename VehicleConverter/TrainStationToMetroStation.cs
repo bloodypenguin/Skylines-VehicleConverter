@@ -42,6 +42,16 @@ namespace VehicleConverter
                 stationAi.m_transportInfo = PrefabCollection<TransportInfo>.FindLoaded("Metro");
                 stationAi.m_maxVehicleCount = 0;
             }
+            if (Stations.ToDecoration(id))
+            {
+                GameObject.Destroy(ai);
+                var newAi = info.gameObject.AddComponent<DecorationBuildingAI>();
+                info.m_buildingAI = newAi;
+                newAi.m_info = info;
+                newAi.m_allowOverlap = true;
+                info.m_placementMode = BuildingInfo.PlacementMode.OnGround;
+            }
+
             ai.m_createPassMilestone = metroEntrance.GetComponent<PlayerBuildingAI>().m_createPassMilestone;
             info.m_UnlockMilestone = metroEntrance.m_UnlockMilestone;
             _uiCategoryfield.SetValue(info, metroEntrance.category);

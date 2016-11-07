@@ -30,11 +30,11 @@ namespace VehicleConverter.Config
         public long WorkshopId { get; private set; }
         [XmlAttribute("description")]
         public string Description { get; private set; }
-        [XmlAttribute("exclude"), DefaultValue(false)]
-        public bool Exclude { get; private set; }
         [XmlAttribute("replace-last-with-trailer"), DefaultValue(false)]
         public bool ReplaceLastTrailerWithEngine { get; private set; }
         [XmlElement("take-trailers"), DefaultValue(null)]
         public List<int> TakeTrailers { get; private set; }
+        [XmlAttribute("exclude"), DefaultValue(false)]
+        public bool Exclude { get; private set; }
     }
 }
