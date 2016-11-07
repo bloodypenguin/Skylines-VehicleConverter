@@ -13,7 +13,6 @@ namespace VehicleConverter.Config
             {
                 TrainCategory.Underground, new[]
                 {
-                    new TrainItem(640837010, "X'Trapolis Metro Melbourne"),
                     new TrainItem(500938881, "Vienna Underground T Stock"),
                     new TrainItem(502118263, "Vienna Underground E6/c6 Stock (short)"),
                     new TrainItem(501495034, "Vienna Underground E6/c6 Stock"),
@@ -30,9 +29,6 @@ namespace VehicleConverter.Config
                     new TrainItem(623036646, "Metro de Madrid Serie 3000"),
                     new TrainItem(621116591, "Alstom Metropolis '08 (Metrô São Paulo) [HD]"),
                     new TrainItem(565179974, "Randstadrail RegioCitadis [Train]", true),
-                    new TrainItem(585209941, "S1 Tram/Metro (double) [Train]"),
-                    new TrainItem(561008120, "S1 Tram/Metro (alt. livery) [Train]"),
-                    new TrainItem(561007663, "S1 Tram/Metro [Train]"),
                     new TrainItem(584699037, "Stockholm Subway train"),
                     new TrainItem(500814074, "Vienna Underground U11 Stock"),
                     new TrainItem(512101792, "Berlin Underground HK Stock"),
@@ -89,6 +85,9 @@ namespace VehicleConverter.Config
             {
                 TrainCategory.Tram, new[]
                 {
+                    new TrainItem(585209941, "S1 Tram/Metro (double) [Train]"),
+                    new TrainItem(561008120, "S1 Tram/Metro (alt. livery) [Train]"),
+                    new TrainItem(561007663, "S1 Tram/Metro [Train]"),
                     new TrainItem(563142263, "TTC CLRV"),
                     new TrainItem(567886231, "TTC ALRV"),
                     new TrainItem(621843448, "TTC Bombardier Flexity Streetcar"),
@@ -111,6 +110,26 @@ namespace VehicleConverter.Config
                     new TrainItem(644470261, "Combino Supra Light Rail", true),
                     new TrainItem(560073353, "Chirpy LRT"),
                     new TrainItem(771217275, "[Train] Kaohsiung Light Rail Urbos 3"),
+                    new TrainItem(640837010, "X'Trapolis Metro Melbourne"),
+                }
+            },
+            {
+                TrainCategory.Pantograph, new[]
+                {
+                    new TrainItem(476291849, "JR East series E233-2000"),
+                    new TrainItem(479313124, "JR East series E231-500"),
+                    new TrainItem(542334716, "Chirpy S-Bahn train 4 car"),
+                    new TrainItem(549489366, "JR East series E233-3000"),
+                    new TrainItem(602373333, "JR East series 209"),
+                    new TrainItem(665292383, "Chirpy Skytrain"),
+                    new TrainItem(795326479, "JR West series 321"),
+                    new TrainItem(740475598, "JR East E231-800 EMU"),
+                    new TrainItem(454460340, "JR E231 Trainset (Japan)"),
+                    new TrainItem(449385670, "JR-EAST Series E233 EMU"),
+                    new TrainItem(757719489, "Tobu Railway 50000 Series EMU"),
+                    new TrainItem(743648823, "Keikyu N1000 Series"),
+                    new TrainItem(740475598, "JR East E231-800 EMU"),
+                    new TrainItem(614153454, "ELVIS korail resistance type metro"),
                 }
             },
             //Korails?
@@ -138,6 +157,7 @@ namespace VehicleConverter.Config
                 _ids[TrainCategory.Underground] = OptionsWrapper<Config>.Options.Underground.Items.ToArray();
                 _ids[TrainCategory.SBahn] = OptionsWrapper<Config>.Options.SBahn.Items.ToArray();
                 _ids[TrainCategory.Tram] = OptionsWrapper<Config>.Options.Trams.Items.ToArray();
+                _ids[TrainCategory.Pantograph] = OptionsWrapper<Config>.Options.Pantograph.Items.ToArray();
                 _configIsOverriden = true;
                 return _ids;
             }
