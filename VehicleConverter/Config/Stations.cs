@@ -44,6 +44,10 @@ namespace VehicleConverter.Config
                     new StationItem(756870924, "Taichung MRT Station"),
                     new StationItem(618580477, "City Station"),
                     new StationItem(563062277, "Glass Terminus Station"),
+                    new StationItem(743648162, "Small Train Station"), 
+                    new StationItem(639013753, "Ground Railway-as-Metro Station"), 
+                    new StationItem(617136391, "Avenue Road Station (Underground Rail Station)"),
+                    new StationItem(725099730, "Overground_Classic"),
                 }
             },
             {
