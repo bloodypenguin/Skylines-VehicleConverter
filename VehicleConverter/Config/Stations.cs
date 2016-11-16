@@ -150,5 +150,9 @@ namespace VehicleConverter.Config
             return list.Contains(id);
         }
 
+        public static StationCategory GetCategory(long id)
+        {
+            return Ids.Keys.FirstOrDefault(cat => Ids[cat].Select(i => i.WorkshopId).Contains(id));
+        }
     }
 }

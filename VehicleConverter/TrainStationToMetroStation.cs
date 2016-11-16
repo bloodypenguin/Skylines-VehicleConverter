@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -61,16 +62,17 @@ namespace VehicleConverter
             {
                 return true;
             }
-            var metroTrack = PrefabCollection<NetInfo>.FindLoaded("Metro Track Ground"); //TODO(earalov): allow to use style
-            var metroTrackElevated = PrefabCollection<NetInfo>.FindLoaded("Metro Track Elevated");
-            var metroTrackSlope = PrefabCollection<NetInfo>.FindLoaded("Metro Track Slope");
-            var metroTrackTunnel = PrefabCollection<NetInfo>.FindLoaded("Metro Track");
-            var metroStationTrack = PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Ground");
-            var metroStationTracElevated = PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Elevated");
-            var metroStationTracSunken = PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Sunken");
+            var nameConverter = Stations.GetCategory(id) == StationCategory.Old ? new Func<string, string>(s => "Steel " + s) : (s => s);
+            var metroTrack = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Track Ground")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Track Ground");
+            var metroTrackElevated = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Track Elevated")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Track Elevated");
+            var metroTrackSlope = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Track Slope")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Track Slope");
+            var metroTrackTunnel = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Track")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Track");
+            var metroStationTrack = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Station Track Ground")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Ground");
+            var metroStationTracElevated = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Station Track Elevated")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Elevated");
+            var metroStationTracSunken = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Station Track Sunken")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Sunken");
             foreach (var path in info.m_paths)
             {
-                if (path?.m_netInfo == null)
+                if (path?.m_netInfo?.name == null || path.m_netInfo.m_class?.m_subService != ItemClass.SubService.PublicTransportTrain)
                 {
                     continue;
                 }
