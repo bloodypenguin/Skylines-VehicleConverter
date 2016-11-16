@@ -79,6 +79,9 @@ namespace VehicleConverter.Config
                     new TrainItem(566938132, "Berlin S-Bahn ET/EB 165 (8 car)"),
                     new TrainItem(785264960, "Hamburg S-Bahn Class 474/874 (6 car)"),
                     new TrainItem(785264521, "Hamburg S-Bahn Class 474/874 (3 car)"),
+                    //London overground
+                    new TrainItem(559175122, "British Rail Class 378 (Line Colour)"),
+                    new TrainItem(527925460, "British Rail Class 378"),  
 
                 }
             },
