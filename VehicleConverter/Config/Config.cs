@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Xml.Serialization;
-using VehicleConverter.OptionsFramework;
+using VehicleConverter.OptionsFramework.Attibutes;
 
 namespace VehicleConverter.Config
 {
-    public class Config : IModOptions
+    [Options("TrainConverter-Config")]
+    public class Config
     {
         public Config()
         {
@@ -37,8 +35,5 @@ namespace VehicleConverter.Config
         public StationItems OldStations { get; private set; }
         [XmlElement("modern-stations-to-metro-station")]
         public StationItems ModernStations { get; private set; }
-
-        [XmlIgnore]
-        public string FileName => "TrainConverter-Config.xml";
     }
 }

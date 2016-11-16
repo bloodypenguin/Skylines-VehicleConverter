@@ -5,8 +5,8 @@ using System.Xml;
 using ColossalFramework.UI;
 using ICities;
 using UnityEngine;
-using VehicleConverter.Config;
 using VehicleConverter.OptionsFramework;
+using VehicleConverter.OptionsFramework.Extensions;
 
 namespace VehicleConverter
 {
