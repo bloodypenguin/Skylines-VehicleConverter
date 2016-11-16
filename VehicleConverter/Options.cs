@@ -14,7 +14,7 @@ namespace VehicleConverter
         {
             ConvertTrainsToTrams = true;
             ConvertSubwayTrainsToMetros = true;
-            ConvertSBahnsToMetros = false;
+            ConvertSBahnsToMetros = true;
             ConvertPantographsToMetros = false;
             ConvertModernStationsToMetroStations = true;
             ConvertOldStationsToMetroStations = true;
