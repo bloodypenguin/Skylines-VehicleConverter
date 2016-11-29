@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ColossalFramework;
+using ColossalFramework.PlatformServices;
 using ColossalFramework.Plugins;
-using ColossalFramework.Steamworks;
 using ColossalFramework.UI;
 using ICities;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace VehicleConverter
         {
             if ((int)id == 1)
                 return new SavedBool(Settings.pdxLoginUsed, Settings.userGameState, false).value;
-            return Steam.IsDlcInstalled(id);
+            return PlatformService.IsDlcInstalled(id);
         }
 
 
