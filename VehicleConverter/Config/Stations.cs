@@ -48,6 +48,8 @@ namespace VehicleConverter.Config
                     new StationItem(639013753, "Ground Railway-as-Metro Station"), 
                     new StationItem(617136391, "Avenue Road Station (Underground Rail Station)"),
                     new StationItem(725099730, "Overground_Classic"),
+                    new StationItem(809604587, "Elevated Train Station Nußdorfer Str."), 
+                    new StationItem(808307356, "Underground train station"), 
                 }
             },
             {

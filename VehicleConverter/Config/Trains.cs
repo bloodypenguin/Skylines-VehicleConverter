@@ -26,7 +26,6 @@ namespace VehicleConverter.Config
                     new TrainItem(520329377, "1995 Stock (Line Colour)"),
                     new TrainItem(524764895, "London Underground S Stock"),
                     new TrainItem(524788629, "S Stock (Line Colour)"),
-                    new TrainItem(623036646, "Metro de Madrid Serie 3000"),
                     new TrainItem(621116591, "Alstom Metropolis '08 (Metrô São Paulo) [HD]"),
                     new TrainItem(565179974, "Randstadrail RegioCitadis [Train]", true),
                     new TrainItem(584699037, "Stockholm Subway train"),
@@ -58,6 +57,8 @@ namespace VehicleConverter.Config
                     new TrainItem(766722658, "Moscow Metro Train #1"),
                     new TrainItem(730504141, "C14 - Stockholm metro train - with colorable stripe"),
                     new TrainItem(722264461, "S1 Metro"),
+                    new TrainItem(805595183, "Stadler Glasgow EMU [4 Car]"),
+                    new TrainItem(805595573, "Stadler Glasgow EMU [6 Car]"), 
                 }
             },
             {
@@ -66,6 +67,7 @@ namespace VehicleConverter.Config
                     new TrainItem(659505001, "Berlin S-Bahn Type 481"),
                     new TrainItem(455504253, "S-Bahn Berlin train engine"),
                     new TrainItem(775928677, "Hamburg Metro | ET490 S-Bahn Hamburg"),
+                    new TrainItem(803713927, "S-Bahn Berlin BR 483 Train"), 
                     //Thaok S-Bahns
                     new TrainItem(537268020, "Hamburg S-Bahn Class ET 171 (471) 3 car", true),
                     new TrainItem(537268458, "Hamburg S-Bahn Class ET 171 (471) 6 car", true),
@@ -113,12 +115,13 @@ namespace VehicleConverter.Config
                     new TrainItem(644470261, "Combino Supra Light Rail", true),
                     new TrainItem(560073353, "Chirpy LRT"),
                     new TrainItem(771217275, "[Train] Kaohsiung Light Rail Urbos 3"),
-                    new TrainItem(640837010, "X'Trapolis Metro Melbourne"),
                 }
             },
             {
                 TrainCategory.Pantograph, new[]
                 {
+                    new TrainItem(640837010, "X'Trapolis Metro Melbourne"),
+                    new TrainItem(623036646, "Metro de Madrid Serie 3000"),
                     new TrainItem(476291849, "JR East series E233-2000"),
                     new TrainItem(479313124, "JR East series E231-500"),
                     new TrainItem(542334716, "Chirpy S-Bahn train 4 car"),
@@ -133,6 +136,7 @@ namespace VehicleConverter.Config
                     new TrainItem(743648823, "Keikyu N1000 Series"),
                     new TrainItem(740475598, "JR East E231-800 EMU"),
                     new TrainItem(614153454, "ELVIS korail resistance type metro"),
+                    new TrainItem(799601407, "3 car Comeng set"),
                 }
             },
         };
