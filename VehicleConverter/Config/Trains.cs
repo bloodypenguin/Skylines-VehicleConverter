@@ -137,6 +137,7 @@ namespace VehicleConverter.Config
                     new TrainItem(740475598, "JR East E231-800 EMU"),
                     new TrainItem(614153454, "ELVIS korail resistance type metro"),
                     new TrainItem(799601407, "3 car Comeng set"),
+                    new TrainItem(811270755, "AdelaideMetro Class 4000"), 
                 }
             },
         };
