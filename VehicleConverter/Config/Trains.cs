@@ -58,7 +58,11 @@ namespace VehicleConverter.Config
                     new TrainItem(730504141, "C14 - Stockholm metro train - with colorable stripe"),
                     new TrainItem(722264461, "S1 Metro"),
                     new TrainItem(805595183, "Stadler Glasgow EMU [4 Car]"),
-                    new TrainItem(805595573, "Stadler Glasgow EMU [6 Car]"), 
+                    new TrainItem(805595573, "Stadler Glasgow EMU [6 Car]"),
+                    new TrainItem(815155700, "Paris Metro Sprague-Thomson (2 car)"), 
+                    new TrainItem(815157636, "Paris Metro Sprague-Thomson (3 car)"), 
+                    new TrainItem(815158936, "Paris Metro Sprague-Thomson (4 car)"), 
+                    new TrainItem(815159453, "Paris Metro Sprague-Thomson (5 car)"),                     
                 }
             },
             {
@@ -84,7 +88,6 @@ namespace VehicleConverter.Config
                     //London overground
                     new TrainItem(559175122, "British Rail Class 378 (Line Colour)"),
                     new TrainItem(527925460, "British Rail Class 378"),  
-
                 }
             },
             {
