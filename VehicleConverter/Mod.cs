@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+#if DEBUG
 using System.Linq;
-using System.Xml;
+#endif
 using ColossalFramework.UI;
 using ICities;
 using UnityEngine;
+#if DEBUG
+using VehicleConverter.Config;
+#endif
 using VehicleConverter.OptionsFramework;
 using VehicleConverter.OptionsFramework.Extensions;
 

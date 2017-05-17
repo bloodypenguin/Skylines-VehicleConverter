@@ -86,9 +86,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(TargetName)"
-xcopy /y "$(TargetPath)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\$(TargetName)"
-mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\PrefabHook"
+    <PostBuildEvent>mkdir "$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\$(TargetName)"
+xcopy /y "$(TargetPath)" "$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\$(TargetName)"
+mkdir "$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\PrefabHook"
 xcopy /y "$(ProjectDir)\lib" "$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Addons\Mods\PrefabHook" /s /e
 </PostBuildEvent>
   </PropertyGroup>
