@@ -13,10 +13,9 @@ namespace VehicleConverter
 {
     public static class Util
     {
-
         public static bool DLC(uint id)
         {
-            if ((int)id == 1)
+            if ((int) id == 1)
                 return new SavedBool(Settings.pdxLoginUsed, Settings.userGameState, false).value;
             return PlatformService.IsDlcInstalled(id);
         }
@@ -61,11 +60,13 @@ namespace VehicleConverter
         {
             var plugins = PluginManager.instance.GetPluginsInfo();
             return (from plugin in plugins.Where(p => p.isEnabled)
-                    select plugin.GetInstances<IUserMod>() into instances
-                    where instances.Any()
-                    select instances[0].Name into name
-                    where name == modName
-                    select name).Any();
+                select plugin.GetInstances<IUserMod>()
+                into instances
+                where instances.Any()
+                select instances[0].Name
+                into name
+                where name == modName
+                select name).Any();
         }
 
         public static void AddRange<T>(this ICollection<T> target, IEnumerable<T> source)
@@ -120,6 +121,15 @@ namespace VehicleConverter
             }
             atlas.material.mainTexture = texture;
             return atlas;
+        }
+
+        public static int[] CommaSeparatedStringToIntArray(string commaSeparated)
+        {
+            if (commaSeparated.Equals(""))
+            {
+                return new int[] { };
+            }
+            return commaSeparated.Split(',').Select(int.Parse).ToArray();
         }
 
         private static Shader GetUIAtlasShader()

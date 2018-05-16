@@ -14,6 +14,9 @@ namespace VehicleConverter.Config
             WorkshopId = -1;
             Description = string.Empty;
             ToDecoration = false;
+            ParialConversion = "";
+            ParialConversionSpawnPoints = "";
+            ToHub = false;
         }
 
         public StationItem(long workshoId, string description, bool toDecoration = false)
@@ -22,6 +25,9 @@ namespace VehicleConverter.Config
             Description = description;
             WorkshopId = workshoId;
             ToDecoration = toDecoration;
+            ParialConversion = "";
+            ParialConversionSpawnPoints = "";
+            ToHub = false;
         }
 
         [XmlAttribute("workshop-id")]
@@ -32,5 +38,11 @@ namespace VehicleConverter.Config
         public bool ToDecoration { get; private set; }
         [XmlAttribute("exclude"), DefaultValue(false)]
         public bool Exclude { get; private set; }
+        [XmlAttribute("to-hub"), DefaultValue(false)]
+        public bool ToHub { get; private set; }
+        [XmlAttribute("hub-metro-paths-indices"), DefaultValue("")]
+        public string ParialConversion { get; private set; }
+        [XmlAttribute("hub-metro-spawn-points-indices"), DefaultValue("")]
+        public string ParialConversionSpawnPoints { get; private set; }
     }
 }

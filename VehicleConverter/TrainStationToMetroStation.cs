@@ -29,18 +29,55 @@ namespace VehicleConverter
             var stationAi = ai as TransportStationAI;
             if (stationAi != null)
             {
+                var item = Stations.GetItem(id);
                 if (stationAi.m_transportInfo == PrefabCollection<TransportInfo>.FindLoaded("Metro"))
                 {
                     return true; //already a metro station
                 }
-                info.m_class = (ItemClass)ScriptableObject.CreateInstance(nameof(ItemClass));
-                info.m_class.name = info.name;
-                info.m_class.m_subService = ItemClass.SubService.PublicTransportMetro;
-                info.m_class.m_service = ItemClass.Service.PublicTransport;
-                stationAi.m_transportLineInfo = PrefabCollection<NetInfo>.FindLoaded("Metro Line");
-                stationAi.m_transportInfo = PrefabCollection<TransportInfo>.FindLoaded("Metro");
-                stationAi.m_maxVehicleCount = 0;
+                if (item == null)
+                {
+                    UnityEngine.Debug.LogWarning("Configuration for station " + id + " not found!");
+                    return false;
+                }
+                if (!item.ToHub)
+                {
+                    info.m_class = (ItemClass) ScriptableObject.CreateInstance(nameof(ItemClass));
+                    info.m_class.name = info.name;
+                    info.m_class.m_subService = ItemClass.SubService.PublicTransportMetro;
+                    info.m_class.m_service = ItemClass.Service.PublicTransport;
+                    stationAi.m_transportLineInfo = PrefabCollection<NetInfo>.FindLoaded("Metro Line");
+                    stationAi.m_transportInfo = PrefabCollection<TransportInfo>.FindLoaded("Metro");
+                    stationAi.m_maxVehicleCount = 0;
+                }
+                else if (stationAi.m_secondaryTransportInfo != null)
+                {
+                    UnityEngine.Debug.LogWarning("Station " + id + " already has secondary transport info!");
+                    return false;
+                }
+                stationAi.m_secondaryTransportInfo = PrefabCollection<TransportInfo>.FindLoaded("Metro");
+                stationAi.m_maxVehicleCount2 = 0;
+                var spawnPoints = Util.CommaSeparatedStringToIntArray(item.ParialConversionSpawnPoints);
+                if (stationAi.m_spawnPoints != null)
+                {
+                    var spawn1 = new ArrayList();
+                    var spawn2 = new ArrayList();
+                    for (var i = 0; i < stationAi.m_spawnPoints.Length; i++)
+                    {
+                        if (spawnPoints.Contains(i))
+                        {
+                            spawn2.Add(stationAi.m_spawnPoints[i]);
+                        }
+                        else
+                        {
+                            spawn1.Add(stationAi.m_spawnPoints[i]);
+                        }
+                    }
+                    stationAi.m_spawnPoints = (DepotAI.SpawnPoint[])spawn1.ToArray(typeof(DepotAI.SpawnPoint));
+                    stationAi.m_spawnPoints2 = (DepotAI.SpawnPoint[])spawn2.ToArray(typeof(DepotAI.SpawnPoint));
+                }
+
             }
+
             if (Stations.ToDecoration(id))
             {
                 GameObject.Destroy(ai);
@@ -70,11 +107,21 @@ namespace VehicleConverter
             var metroStationTrack = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Station Track Ground")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Ground");
             var metroStationTracElevated = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Station Track Elevated")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Elevated");
             var metroStationTracSunken = PrefabCollection<NetInfo>.FindLoaded(nameConverter.Invoke("Metro Station Track Sunken")) ?? PrefabCollection<NetInfo>.FindLoaded("Metro Station Track Sunken");
-            foreach (var path in info.m_paths)
+            var item2 = Stations.GetItem(id);
+            var hubPathIndices = Util.CommaSeparatedStringToIntArray(item2.ParialConversion);
+            for (var i = 0; i < info.m_paths.Length; i++)
             {
-                if (path?.m_netInfo?.name == null || path.m_netInfo.m_class?.m_subService != ItemClass.SubService.PublicTransportTrain)
+                var path = info.m_paths[i];
+                if (path?.m_netInfo?.name == null || path.m_netInfo.m_class?.m_subService !=ItemClass.SubService.PublicTransportTrain)
                 {
                     continue;
+                }
+                if (item2.ToHub)
+                {
+                    if (!hubPathIndices.Contains(i))
+                    {
+                        continue;
+                    }
                 }
                 if (metroTrackTunnel != null)
                 {

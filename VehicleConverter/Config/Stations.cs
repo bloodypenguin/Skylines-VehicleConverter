@@ -111,6 +111,17 @@ namespace VehicleConverter.Config
             }
         }
 
+        public static StationItem GetItem(long id)
+        {
+            var modern = Ids[StationCategory.Modern].FirstOrDefault(i => i.WorkshopId == id);
+            if (modern != null)
+            {
+                return modern;
+            }
+            var old = Ids[StationCategory.Old].FirstOrDefault(i => i.WorkshopId == id);
+            return old ?? Ids[StationCategory.Tram].FirstOrDefault(i => i.WorkshopId == id);
+        }
+
         public static long[] GetConvertedIds(StationCategory StationCategory = StationCategory.All)
         {
             var list = new List<long>();
