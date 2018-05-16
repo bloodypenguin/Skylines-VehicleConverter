@@ -36,7 +36,6 @@ namespace VehicleConverter
             info.m_vehicleAI = ai;
 
             ai.m_passengerCapacity = ((TramAI)tram.m_vehicleAI).m_passengerCapacity;
-            ai.m_ticketPrice = ((TramAI)tram.m_vehicleAI).m_ticketPrice;
             ai.m_arriveEffect = ((TramAI)tram.m_vehicleAI).m_arriveEffect;
             info.m_acceleration = tram.m_acceleration;
             info.m_braking = tram.m_braking;
