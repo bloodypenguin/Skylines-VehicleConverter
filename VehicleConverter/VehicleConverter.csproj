@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="Cache.cs" />
     <Compile Include="Config\StationCategory.cs" />
+    <Compile Include="Config\BarsType.cs" />
     <Compile Include="Config\TrainCategory.cs" />
     <Compile Include="Config\Config.cs" />
     <Compile Include="Config\StationItem.cs" />
