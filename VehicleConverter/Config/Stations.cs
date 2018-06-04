@@ -154,19 +154,6 @@ namespace VehicleConverter.Config
             }
         }
 
-        public static bool ToDecoration(long id)
-        {
-            var list = new List<long>();
-            Ids.Select(kvp => kvp.Value).ForEach(l => l.ForEach(t =>
-            {
-                if (t.ToDecoration)
-                {
-                    list.Add(t.WorkshopId);
-                }
-            }));
-            return list.Contains(id);
-        }
-
         public static StationCategory GetCategory(long id)
         {
             return Ids.Keys.FirstOrDefault(cat => Ids[cat].Select(i => i.WorkshopId).Contains(id));

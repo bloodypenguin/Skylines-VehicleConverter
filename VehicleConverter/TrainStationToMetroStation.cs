@@ -87,7 +87,8 @@ namespace VehicleConverter
                 }
             }
 
-            if (Stations.ToDecoration(id))
+            var item2 = Stations.GetItem(id);
+            if (item2.ToDecoration)
             {
                 GameObject.Destroy(ai);
                 var newAi = info.gameObject.AddComponent<DecorationBuildingAI>();
@@ -110,7 +111,6 @@ namespace VehicleConverter
                 return true;
             }
 
-            var item2 = Stations.GetItem(id);
             var styleConverter = Stations.GetCategory(id) == StationCategory.Old
                 ? new Func<string, string>(s => "Steel " + s)
                 : (s => s);
