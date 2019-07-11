@@ -13,10 +13,6 @@ namespace VehicleConverter.Config
             SBahn = new TrainItems(Trains.GetItems(TrainCategory.SBahn).OrderBy(i => i.WorkshopId).ToList());
             Trams = new TrainItems(Trains.GetItems(TrainCategory.Tram).OrderBy(i => i.WorkshopId).ToList());
             Pantograph = new TrainItems(Trains.GetItems(TrainCategory.Pantograph).OrderBy(i => i.WorkshopId).ToList());
-
-            TramStations = new StationItems(Stations.GetItems(StationCategory.Tram).OrderBy(i => i.WorkshopId).ToList());
-            OldStations = new StationItems(Stations.GetItems(StationCategory.Old).OrderBy(i => i.WorkshopId).ToList());
-            ModernStations = new StationItems(Stations.GetItems(StationCategory.Modern).OrderBy(i => i.WorkshopId).ToList());
         }
 
         [XmlElement("version")]
@@ -29,11 +25,5 @@ namespace VehicleConverter.Config
         public TrainItems Pantograph { get; private set; }
         [XmlElement("tram-trains-to-tram")]
         public TrainItems Trams { get; private set; }
-        [XmlElement("tram-train-stations-to-metro-station")]
-        public StationItems TramStations { get; private set; }
-        [XmlElement("old-stations-to-metro-station")]
-        public StationItems OldStations { get; private set; }
-        [XmlElement("modern-stations-to-metro-station")]
-        public StationItems ModernStations { get; private set; }
     }
 }

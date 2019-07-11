@@ -8,7 +8,6 @@ namespace VehicleConverter
     {
         private const string MOM = "Trains to metro - Require Metro Overhaul Mod (MOM)";
         private const string SNOWFALL = "Trains to trams - Require Snowfall DLC";
-        private const string STATIONS = "Train Stations to metro stations - Require Metro Overhaul Mod (MOM)";
 
         public Options()
         {
@@ -16,9 +15,6 @@ namespace VehicleConverter
             ConvertSubwayTrainsToMetros = true;
             ConvertSBahnsToMetros = true;
             ConvertPantographsToMetros = false;
-            ConvertModernStationsToMetroStations = true;
-            ConvertOldStationsToMetroStations = true;
-            ConvertTramStationsToMetroStations = false;
         }
 
         [XmlElement("convert-subway-trains-to-metros")]
@@ -38,14 +34,5 @@ namespace VehicleConverter
         [Checkbox("Convert tram-trains to Snowfall trams", null, null, SNOWFALL)]
         public bool ConvertTrainsToTrams { set; get; }
 
-        [XmlElement("convert-modern-train-stations-to-metro-stations")]
-        [Checkbox("Convert some Modern Style stations to metro stations", null, null, STATIONS)]
-        public bool ConvertModernStationsToMetroStations { set; get; }
-        [XmlElement("convert-old-train-stations-to-metro-stations")]
-        [Checkbox("Convert some Old Style stations to metro stations (Steel style used if enabled)", null, null, STATIONS)]
-        public bool ConvertOldStationsToMetroStations { set; get; }
-        [XmlElement("convert-tram-train-stations-to-metro-stations")]
-        [Checkbox("Convert some 'tram' stations to metro stations", null, null, STATIONS)]
-        public bool ConvertTramStationsToMetroStations { set; get; }
     }
 }

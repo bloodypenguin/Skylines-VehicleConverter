@@ -22,6 +22,7 @@ namespace VehicleConverter
             {
                 return;
             }
+
             var isModActive = Util.IsModActive("Metro Overhaul");
             if ((isModActive || Util.DLC(SteamHelper.kWinterDLCAppID)) &&
                 (OptionsWrapper<Options>.Options.ConvertPantographsToMetros ||
@@ -40,6 +41,7 @@ namespace VehicleConverter
                             {
                                 TrainToMetro.Convert(info);
                             }
+
                             if (Util.DLC(SteamHelper.kWinterDLCAppID))
                             {
                                 TrainToTram.Convert(info);
@@ -52,23 +54,6 @@ namespace VehicleConverter
                     }
                 };
                 VehicleInfoHook.Deploy();
-            }
-            if (isModActive && 
-                (OptionsWrapper<Options>.Options.ConvertModernStationsToMetroStations || OptionsWrapper<Options>.Options.ConvertOldStationsToMetroStations ||
-                OptionsWrapper<Options>.Options.ConvertTramStationsToMetroStations))
-            {
-                BuildingInfoHook.OnPreInitialization += info =>
-                {
-                    try
-                    {
-                        TrainStationToMetroStation.Convert(info);
-                    }
-                    catch (Exception e)
-                    {
-                        UnityEngine.Debug.LogError(e);
-                    }
-                };
-                BuildingInfoHook.Deploy();
             }
         }
 

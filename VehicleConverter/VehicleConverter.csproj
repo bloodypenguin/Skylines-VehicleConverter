@@ -31,15 +31,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Cache.cs" />
-    <Compile Include="Config\StationCategory.cs" />
     <Compile Include="Config\BarsType.cs" />
     <Compile Include="Config\TrainCategory.cs" />
     <Compile Include="Config\Config.cs" />
-    <Compile Include="Config\StationItem.cs" />
     <Compile Include="Config\TrainItem.cs" />
-    <Compile Include="Config\StationItems.cs" />
     <Compile Include="Config\TrainItems.cs" />
-    <Compile Include="Config\Stations.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="LoadingExtension.cs" />
     <Compile Include="Options.cs" />
@@ -56,7 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\Trains.cs" />
     <Compile Include="TrainConversions.cs" />
-    <Compile Include="TrainStationToMetroStation.cs" />
     <Compile Include="TrainToMetro.cs" />
     <Compile Include="TrainToTram.cs" />
     <Compile Include="Tuple.cs" />
@@ -78,6 +73,7 @@
     </Reference>
     <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.Core" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Games\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
