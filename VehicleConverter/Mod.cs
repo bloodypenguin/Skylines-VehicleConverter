@@ -16,7 +16,7 @@ namespace VehicleConverter
     public class Mod : IUserMod
     {
         public string Name => "Train Converter";
-        public string Description => "Converts tram-trains and metro-trains to actual trams and trains, accordingly";
+        public string Description => "Converts tram-trains and metro-trains to actual trams and metros, accordingly";
 
         public void OnSettingsUI(UIHelperBase helper)
         {
