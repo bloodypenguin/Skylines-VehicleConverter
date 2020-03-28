@@ -12,7 +12,7 @@ namespace MetroStationConverter
         {
             ConvertModernStationsToMetroStations = true;
             ConvertOldStationsToMetroStations = true;
-            ConvertTramStationsToMetroStations = false;
+            ConvertTramStationsToMetroStations = true;
         }
 
         [XmlElement("convert-modern-train-stations-to-metro-stations")]
@@ -22,7 +22,7 @@ namespace MetroStationConverter
         [Checkbox("Convert some Old Style stations to metro stations", null, null, STATIONS)]
         public bool ConvertOldStationsToMetroStations { set; get; }
         [XmlElement("convert-tram-train-stations-to-metro-stations")]
-        [Checkbox("Convert some 'tram' stations to metro stations", null, null, STATIONS)]
+        [Checkbox("Convert some 'tram' (pre-Snowfall) stations to metro stations", null, null, STATIONS)]
         public bool ConvertTramStationsToMetroStations { set; get; }
     }
 }

@@ -17,7 +17,6 @@ namespace MetroStationConverter.Config
                     new StationItem(720837956, "EDSA MRT3 Philippines"),
                     new StationItem(433435357, "Modern Train Station"),
                     new StationItem(701048320, "train station Thorildsplan"),
-                    new StationItem(618580477, "City Station"),
                     new StationItem(658612506, "2-Track Elevated Station With Pedestrian deck"),
                     new StationItem(564051384, "2-Track Elevated Station"),
                     new StationItem(532551655, "4-TracksElevatedStation Plain"),
