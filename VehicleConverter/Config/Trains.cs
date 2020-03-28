@@ -188,11 +188,11 @@ namespace VehicleConverter.Config
             switch (trainCategory)
             {
                 case TrainCategory.Underground:
-                    return OptionsWrapper<Options>.Options.ConvertSubwayTrainsToMetros && Util.IsModActive("Metro Overhaul");
+                    return OptionsWrapper<Options>.Options.ConvertSubwayTrainsToMetros;
                 case TrainCategory.SBahn:
-                    return OptionsWrapper<Options>.Options.ConvertSBahnsToMetros && Util.IsModActive("Metro Overhaul");
+                    return OptionsWrapper<Options>.Options.ConvertSBahnsToMetros;
                 case TrainCategory.Pantograph:
-                    return OptionsWrapper<Options>.Options.ConvertPantographsToMetros && Util.IsModActive("Metro Overhaul");
+                    return OptionsWrapper<Options>.Options.ConvertPantographsToMetros;
                 case TrainCategory.Tram:
                     return OptionsWrapper<Options>.Options.ConvertTrainsToTrams && Util.DLC(SteamHelper.kWinterDLCAppID) ;
                 default:

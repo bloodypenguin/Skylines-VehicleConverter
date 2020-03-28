@@ -23,12 +23,10 @@ namespace VehicleConverter
                 return;
             }
 
-            var isModActive = Util.IsModActive("Metro Overhaul");
-            if ((isModActive || Util.DLC(SteamHelper.kWinterDLCAppID)) &&
-                (OptionsWrapper<Options>.Options.ConvertPantographsToMetros ||
+            if (OptionsWrapper<Options>.Options.ConvertPantographsToMetros ||
                  OptionsWrapper<Options>.Options.ConvertSBahnsToMetros ||
                  OptionsWrapper<Options>.Options.ConvertSubwayTrainsToMetros ||
-                 OptionsWrapper<Options>.Options.ConvertTrainsToTrams))
+                 OptionsWrapper<Options>.Options.ConvertTrainsToTrams)
             {
 
                 VehicleInfoHook.OnPreInitialization += info =>
@@ -37,10 +35,7 @@ namespace VehicleConverter
                     {
                         if (info.m_class.m_subService == ItemClass.SubService.PublicTransportTrain)
                         {
-                            if (isModActive)
-                            {
-                                TrainToMetro.Convert(info);
-                            }
+                            TrainToMetro.Convert(info);
 
                             if (Util.DLC(SteamHelper.kWinterDLCAppID))
                             {

@@ -6,7 +6,7 @@ namespace VehicleConverter
     [Options("TrainConverter-Options")]
     public class Options
     {
-        private const string MOM = "Trains to metro - Require Metro Overhaul Mod (MOM)";
+        private const string MOM = "Trains to metro";
         private const string SNOWFALL = "Trains to trams - Require Snowfall DLC";
 
         public Options()
