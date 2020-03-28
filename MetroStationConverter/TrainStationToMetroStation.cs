@@ -161,7 +161,7 @@ namespace MetroStationConverter
                     continue;
                 }
 
-                if (!path.m_netInfo.name.Contains("Metro") && path.m_netInfo.name.Contains("Station Track Eleva"));
+                if (!path.m_netInfo.name.Contains("Metro") && path.m_netInfo.name.Contains("Station Track Eleva"))
                 {
                     path.m_netInfo = metroStationTrackElevated;
                     continue;
